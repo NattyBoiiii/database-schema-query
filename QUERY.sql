@@ -1,34 +1,39 @@
 SELECT *
-FROM Users
-WHERE DateOfBirth BETWEEN '01-01-2000- AND '12-31-2004';
+FROM Jobs
+WHERE Date_assigned BETWEEN '2024-12-31';
 
-SELECT * 
-FROM Posts
-WHERE PostedBy = 4;
+SELECT
+    Jobs.jobID,
+    Jobs.Date_assigned,
+    Cleaning_Supplies.Name_of_supply,
+    Used_Supplies.Quantity_used
+FROM Used_Supplies
+JOIN Jobs ON
+    Used_Supplies.JobID = Jobs.JobID
+JOIN Cleaning_Supplies ON
+    Used_Supplies.SupplyID = Cleaning_Supplies.SupplyID
+WHERE Used_Supplies.Quantity_used > 0;
 
 SELECT 
-	GroupName
-FROM Groups;
+    Housekeeping_Attendant.First_name AS Attendant_Name,
+    COUNT(Jobs.JobID) AS Job_Count
+FROM Housekeeping_Attendant
+JOIN Jobs ON
+    Housekeeping_Attendant.AttendantID = Jobs.AttendantID
+GROUP BY Housekeeping_Attendant.First_name;
 
-SELECT *
-FROM GroupMemberShipRequests
-WHERE GroupMemberUserID = 2;
+SELECT
+    Jobs.JobID
+    MAX(Transactions.Amount_paid) AS Max_Amount_Paid
+FROM Jobs
+JOIN Transactions ON
+    Jobs.JobID = Transactions.JobID
+GROUP BY Jobs.JobID;
 
-SELECT *
-FROM Users
-JOIN Friends ON Users.UserID = Friends.FriendWhoAdded OR Users.UserID = Friends.FriendBeingAdded
-WHERE (FriendWhoAdded = 2 OR FriendBeingAdded = 2) AND UserID IS NOT 2
-AND IsAccepted = 1;
-
-SELECT *
-FROM Friends
-WHERE FriendWhoAdded = 1;
-
-SELECT * 
-FROM Posts
-Where GroupID = 2;
-
-SELECT * 
-FROM GroupMembershipRequests
-WHERE GroupID = 2 AND IsGroupMemberShipAccepted = 0;
-
+SELECT 
+	Clients.First_name AS Client_Name, 
+    COUNT(Jobs.JobID) AS Job_Count
+FROM Clients
+INNER JOIN Jobs ON 
+	Clients.ClientID = Jobs.ClientID
+GROUP BY Clients.First_name;
