@@ -1,4 +1,3 @@
--- Create Users Table
 CREATE TABLE Users (
     UserID INT AUTO_INCREMENT PRIMARY KEY,
     Username VARCHAR(50),
@@ -9,7 +8,6 @@ CREATE TABLE Users (
     DateAdded TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Create Friends Table
 CREATE TABLE Friends (
     FriendID INT AUTO_INCREMENT PRIMARY KEY,
     FriendWhoAdded INT,
@@ -18,8 +16,6 @@ CREATE TABLE Friends (
     DateAdded TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-
--- Create Groups Table
 CREATE TABLE Groups (
     GroupID INT AUTO_INCREMENT PRIMARY KEY,
     GroupName VARCHAR(100),
@@ -27,8 +23,6 @@ CREATE TABLE Groups (
     DateAdded TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-
--- Create Posts Table
 CREATE TABLE Posts (
     PostID INT AUTO_INCREMENT PRIMARY KEY,
     PostDescription VARCHAR(255),
@@ -39,7 +33,6 @@ CREATE TABLE Posts (
     DatePosted TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Create Group Membership Requests Table
 CREATE TABLE GroupMembershipRequests (
     GroupMemberShipRequestsID INT AUTO_INCREMENT PRIMARY KEY,
     GroupID INT,
